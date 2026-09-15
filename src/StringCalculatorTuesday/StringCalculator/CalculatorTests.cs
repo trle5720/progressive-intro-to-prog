@@ -25,4 +25,17 @@ public class CalculatorTests
 
         Assert.Equal(expected, answer);
     }
+
+    [Theory]
+    [InlineData("1,2", 3)]
+    [InlineData("2,3", 5)]
+    [InlineData("3,4", 7)]
+    public void TwoIntegers(string numbers, int expected)
+    {
+        var calculator = new Calculator();
+        var answer = calculator.Add(numbers);
+        Assert.Equal(expected, answer);
+    }
+
+
 }

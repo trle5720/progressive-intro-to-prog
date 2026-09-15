@@ -1,16 +1,21 @@
-﻿
-public class Calculator
+﻿public class Calculator
 {
     public int Add(string numbers)
     {
+        if (numbers == "") return 0;
 
-        if ((numbers != "") && (int.TryParse(numbers, out int x)))
+        string[] numbersArray = numbers.Split(',');
+        int sum = 0;
+
+        foreach (string num in numbersArray)
         {
-            return x;
+            if (!int.TryParse(num, out int x))
+            {
+                throw new ArgumentException($"Invalid number: {num}");
+            }
+            sum += x;
         }
-        else
-        {
-            return 0;
-        }
+
+        return sum;
     }
 }
