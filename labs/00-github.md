@@ -22,6 +22,7 @@ git config --global user.email "your@email.com"
 In that same terminal window:
 
 ```sh
+dotnet new gitignore
 git init
 git add .
 git commit -m "Initial"

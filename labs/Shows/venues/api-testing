@@ -1,0 +1,5 @@
+## how to test API
+
+start the dotnet app so that the db and api are running
+
+within the root directory, in requests.md, you can type and send requests there
