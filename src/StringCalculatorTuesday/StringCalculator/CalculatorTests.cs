@@ -37,5 +37,17 @@ public class CalculatorTests
         Assert.Equal(expected, answer);
     }
 
+    [Theory]
+    [InlineData("1,2,3", 6)]
+    [InlineData("2,3,4,5", 14)]
+    [InlineData("1,2,3,4,5,6,7,8,9", 45)]
+    
+    public void MultipleIntegers(string numbers, int expected)
+    {
+        var calculator = new Calculator();
+        var answer = calculator.Add(numbers);
+        Assert.Equal(expected, answer);
+    }
+
 
 }
