@@ -50,4 +50,15 @@ public class CalculatorTests
     }
 
 
+    [Theory]
+    [InlineData("1\n2", 3)]
+    [InlineData("1\n2,3", 6)]
+    [InlineData("1,2\n3,4", 10)]
+    public void MixedDelimiters(string numbers, int expected)
+    {
+        var calculator = new Calculator();
+        var answer = calculator.Add(numbers);
+        Assert.Equal(expected, answer);
+    }
+
 }

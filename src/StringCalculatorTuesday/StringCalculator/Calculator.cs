@@ -4,7 +4,7 @@
     {
         if (numbers == "") return 0;
 
-        string[] numbersArray = numbers.Split(',');
+        string[] numbersArray = numbers.Split(',','\n');
         int sum = 0;
 
         foreach (string num in numbersArray)
