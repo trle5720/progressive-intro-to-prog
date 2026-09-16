@@ -79,5 +79,13 @@ public class CalculatorTests
         var calculator = new Calculator();
         Assert.Throws<ArgumentException>(() => calculator.Add("-1,2,-3"));
     }
+    
+    [Fact]
+    public void NegativeNumbersExceptionMessageList()
+    {
+        var calculator = new Calculator();
+        var exception = Assert.Throws<ArgumentException>(() => calculator.Add("-1,2,-3"));
+        Assert.Equal("-1,-3", exception.Message);
+    }
 
 }

@@ -24,20 +24,28 @@
             numbersArray = numbers.Split(',', '\n');
         }
 
-        int sum = 0;
+        var values = new System.Collections.Generic.List<int>();
+        var negatives = new System.Collections.Generic.List<int>();
 
         foreach (string num in numbersArray)
         {
             if (!int.TryParse(num, out int x))
             {
                 throw new ArgumentException($"Invalid number: {num}");
-            }else if(x < 0)
-            {
-                throw new ArgumentException($"Negative number: {x}");
             }
-            sum += x;
+
+            if (x < 0)
+            {
+                negatives.Add(x);
+            }
+            values.Add(x);
         }
 
-        return sum;
+        if (negatives.Count > 0)
+        {
+            throw new ArgumentException($"{string.Join(",", negatives)}");
+        }
+
+        return values.Sum();
     }
 }
