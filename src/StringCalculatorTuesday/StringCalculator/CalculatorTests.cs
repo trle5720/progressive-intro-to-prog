@@ -61,4 +61,23 @@ public class CalculatorTests
         Assert.Equal(expected, answer);
     }
 
+    [Theory]
+    [InlineData("//#\n1#2#3", 6)]
+    [InlineData("//;\n1;2", 3)]
+    [InlineData("//|\n1|2|3", 6)]
+    [InlineData("//sep\n2sep3", 5)]
+    public void customDelimiter(string numbers, int expected)
+    {
+        var calculator = new Calculator();
+        var answer = calculator.Add(numbers);
+        Assert.Equal(expected, answer);
+    }
+
+    [Fact]
+    public void NegativeNumbersThrowException()
+    {
+        var calculator = new Calculator();
+        Assert.Throws<ArgumentException>(() => calculator.Add("-1,2,-3"));
+    }
+
 }
