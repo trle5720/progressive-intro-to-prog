@@ -37,8 +37,10 @@
             if (x < 0)
             {
                 negatives.Add(x);
+            }else if(x <= 1000)
+            {
+                values.Add(x);
             }
-            values.Add(x);
         }
 
         if (negatives.Count > 0)

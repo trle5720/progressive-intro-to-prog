@@ -88,4 +88,14 @@ public class CalculatorTests
         Assert.Equal("-1,-3", exception.Message);
     }
 
+    [Theory]
+    [InlineData("2,1001", 2)]
+    [InlineData("1000,1001", 1000)]
+    public void BigNumbersAreIgnored(string numbers, int expected)
+    {
+        var calculator = new Calculator();
+        var result = calculator.Add(numbers);
+        Assert.Equal(expected, result);
+    }
+
 }
