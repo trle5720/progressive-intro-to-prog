@@ -36,9 +36,9 @@ builder.Services.AddMarten(_ =>
 // The service that owns shows data. Anything that needs shows asks for IProvideShowsData;
 // nothing else knows it is Marten underneath.
 builder.Services.AddScoped<IProvideShowsData, ShowsData>();
-
+// Above this line is all configuring the various services that will do work in this API
 var app = builder.Build();
-
+// after this line is configuring the http "middleware" - how HTTP requests and responses are handled.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi(); // /openapi/v1.json

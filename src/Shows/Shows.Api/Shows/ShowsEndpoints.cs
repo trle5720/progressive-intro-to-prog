@@ -4,7 +4,7 @@ public static class ShowsEndpoints
 {
     public static IEndpointRouteBuilder MapShows(this IEndpointRouteBuilder routes)
     {
-        var group = routes.MapGroup("/shows");
+        var group = routes.MapGroup("/shows"); // "prefix is /shows"
 
         // GET /shows
         group.MapGet("", (IProvideShowsData data, CancellationToken token) =>
@@ -28,7 +28,7 @@ public static class ShowsEndpoints
 
             try
             {
-                await notifier.NotifyNewShowAsync(new ShowSummary(created.Id, created.Title));
+               await notifier.NotifyNewShowAsync(new ShowSummary(created.Id, created.Title));
             }
             catch (Exception ex)
             {
@@ -40,6 +40,8 @@ public static class ShowsEndpoints
 
             return Results.Created($"/shows/{created.Id}", created);
         });
+
+        group.WithDisplayName("The Shows Api");
 
         return routes;
     }

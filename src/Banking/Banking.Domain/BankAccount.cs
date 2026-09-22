@@ -15,7 +15,7 @@ public class BankAccount(IProvideBonusesForBankAccountDeposits bonusCalculator)
     public virtual void Deposit(TransactionAmount amountToDeposit)
     {
     
-        decimal bonus = bonusCalculator.CalculateBonusFor(_currentBalance, amountToDeposit);
+        decimal bonus = bonusCalculator.CalculateBonusFor(_currentBalance, amountToDeposit); // Slime, BS, Fake, JFHCI
 
         _currentBalance += amountToDeposit + bonus;
     }

@@ -12,12 +12,6 @@ Keeping them separate means the database can change without changing what caller
 what callers see can change without a database migration. The translation happens in
 `ShowsData`.
 
-## What we store vs. what we promise
-
-We store the 'ShowEntity' in the same shape as 'ShowCreateRequest' but with the ability to change the format without breaking the caller.
-
-We promise the shapes of 'ShowSummary', 'ShowDeatils' and 'ShowCreateRequest' where the Title will be required and Genre is optional.
-
 ## Only one file knows it's Postgres
 
 Everything talks to `IProvideShowsData`. `ShowsData` is the only place that mentions Marten

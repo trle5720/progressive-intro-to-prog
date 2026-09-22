@@ -42,6 +42,7 @@ public class AddingShows(ShowsApiFixture fixture) : IClassFixture<ShowsApiFixtur
             api.StatusCodeShouldBe(201);
         });
 
-        await fixture.Notifier.Received().NotifyNewShowAsync(Arg.Is<ShowSummary>(s => s!.Title == "The Leftovers"));
+        await fixture.Notifier.Received().NotifyNewShowAsync(Arg.Is<ShowSummary>(
+            s => s!.Title == "The Leftovers"));
     }
 }

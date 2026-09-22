@@ -15,7 +15,7 @@ public record ShowDetails(Guid Id, string Title, string? Genre, DateTimeOffset A
 public record ShowCreateRequest
 {
     [Required, MinLength(2), MaxLength(100)]
-    public required string Title { get; init; } 
+    public required string Title { get; init; }
 
     [MaxLength(40)]
     public string? Genre { get; init; }

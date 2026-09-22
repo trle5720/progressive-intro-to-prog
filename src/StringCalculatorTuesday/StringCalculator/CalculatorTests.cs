@@ -1,109 +1,74 @@
 ﻿
 
 namespace StringCalculator;
+
 public class CalculatorTests
 {
+
+    private Calculator calculator = new Calculator();
+
+
     [Fact]
     public void EmptyStringReturnsZero()
     {
-        var calculator = new Calculator();
 
         var result = calculator.Add("");
+        calculator.Add("1,2");
 
         Assert.Equal(0, result);
     }
 
     [Theory]
+    [InlineData("", 0)]
+    [InlineData("", 252)]
+    public void EmptyStringWithDefault(string numbers, int def) 
+    {
+
+        var result = calculator.Add(numbers, def);
+
+        Assert.Equal(def, result);
+    }
+
+    [Theory]
     [InlineData("1", 1)]
     [InlineData("2", 2)]
-    [InlineData("3", 3)]
-    [InlineData("4", 4)]
+    [InlineData("1008",  1008)]
     public void SingleDigit(string numbers, int expected)
     {
-        var calculator = new Calculator();
         var answer = calculator.Add(numbers);
 
         Assert.Equal(expected, answer);
     }
 
     [Theory]
-    [InlineData("1,2", 3)]
-    [InlineData("2,3", 5)]
-    [InlineData("3,4", 7)]
-    public void TwoIntegers(string numbers, int expected)
+    [InlineData("1,3", 4)]
+    [InlineData("2,5", 7)]
+    [InlineData("10,1", 11)]
+    [InlineData("108,20", 128)]
+    public void TwoDigits(string numbers, int expected)
     {
-        var calculator = new Calculator();
         var answer = calculator.Add(numbers);
+
         Assert.Equal(expected, answer);
     }
-
     [Theory]
+
     [InlineData("1,2,3", 6)]
-    [InlineData("2,3,4,5", 14)]
     [InlineData("1,2,3,4,5,6,7,8,9", 45)]
+    public void Arbitrary(string numbers, int expected)
+    {
+        var answer = calculator.Add(numbers);
+
+        Assert.Equal(expected, answer);
+    }
+
+    [Theory]
+    [InlineData("1,2\n3", 6)]
     
-    public void MultipleIntegers(string numbers, int expected)
+    public void MixedDelimeters(string numbers, int expected)
     {
-        var calculator = new Calculator();
         var answer = calculator.Add(numbers);
+
         Assert.Equal(expected, answer);
     }
-
-
-    [Theory]
-    [InlineData("1\n2", 3)]
-    [InlineData("1\n2,3", 6)]
-    [InlineData("1,2\n3,4", 10)]
-    public void MixedDelimiters(string numbers, int expected)
-    {
-        var calculator = new Calculator();
-        var answer = calculator.Add(numbers);
-        Assert.Equal(expected, answer);
-    }
-
-    [Theory]
-    [InlineData("//#\n1#2#3", 6)]
-    [InlineData("//;\n1;2", 3)]
-    [InlineData("//|\n1|2|3", 6)]
-    [InlineData("//sep\n2sep3", 5)]
-    public void customDelimiter(string numbers, int expected)
-    {
-        var calculator = new Calculator();
-        var answer = calculator.Add(numbers);
-        Assert.Equal(expected, answer);
-    }
-
-    [Fact]
-    public void NegativeNumbersThrowException()
-    {
-        var calculator = new Calculator();
-        Assert.Throws<ArgumentException>(() => calculator.Add("-1,2,-3"));
-    }
-    
-    [Fact]
-    public void NegativeNumbersExceptionMessageList()
-    {
-        var calculator = new Calculator();
-        var exception = Assert.Throws<ArgumentException>(() => calculator.Add("-1,2,-3"));
-        Assert.Equal("-1,-3", exception.Message);
-    }
-
-    [Theory]
-    [InlineData("2,1001", 2)]
-    [InlineData("1000,1001", 1000)]
-    public void BigNumbersAreIgnored(string numbers, int expected)
-    {
-        var calculator = new Calculator();
-        var result = calculator.Add(numbers);
-        Assert.Equal(expected, result);
-    }
-
-    [Fact]
-    public void CustomDelimiterOfAnyLength()
-    {
-        var calculator = new Calculator();
-        var result = calculator.Add("//[***]\n1***2***3");
-        Assert.Equal(6, result);
-    }
-
 }

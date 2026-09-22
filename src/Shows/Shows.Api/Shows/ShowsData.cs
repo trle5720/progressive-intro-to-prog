@@ -21,7 +21,7 @@ public class ShowsData(IDocumentSession session) : IProvideShowsData
         return await session.Query<ShowEntity>()
             .Where(s => s.Id == id)
             .Select(s => new ShowDetails(s.Id, s.Title, s.Genre, s.Added))
-            .FirstAsync();
+            .FirstOrDefaultAsync();
     }
 
     public async Task<ShowDetails> AddShowAsync(ShowCreateRequest request)
@@ -36,7 +36,7 @@ public class ShowsData(IDocumentSession session) : IProvideShowsData
 
         session.Store(entity);
         await session.SaveChangesAsync();
-
+        // insert into Table values (...)
         return new ShowDetails(entity.Id, entity.Title, entity.Genre, entity.Added);
     }
 }

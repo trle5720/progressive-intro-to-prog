@@ -1,53 +1,12 @@
-﻿public class Calculator
+﻿
+public class Calculator
 {
-    public int Add(string numbers)
+    public int Add(string numbers, int defaultValue = 0)
     {
-        if (numbers == "") return 0;
-        string[] numbersArray;
-        if (numbers.StartsWith("//")){
-            var parts = numbers.Split(new[] { "\r\n", "\n" }, 2, StringSplitOptions.None);
-            string header = parts[0];
-            string rest = parts.Length > 1 ? parts[1] : "";
-            string customDelim = header.Length > 2 ? header.Substring(2) : "";
-            if (string.IsNullOrEmpty(customDelim))
-            {
-                numbersArray = rest.Split(',', '\n');
-            }
-            else
-            {
-                numbersArray = rest.Split(new[] { ",", "\n", customDelim }, StringSplitOptions.None);
-            }
+        return numbers == "" ? defaultValue : numbers.Split(',', '\n') // ["1", "2", "3"]
+             .Sum(int.Parse); // 6
 
-        }
-        else
-        {
-            numbersArray = numbers.Split(',', '\n');
-        }
-
-        var values = new System.Collections.Generic.List<int>();
-        var negatives = new System.Collections.Generic.List<int>();
-
-        foreach (string num in numbersArray)
-        {
-            if (!int.TryParse(num, out int x))
-            {
-                throw new ArgumentException($"Invalid number: {num}");
-            }
-
-            if (x < 0)
-            {
-                negatives.Add(x);
-            }else if(x <= 1000)
-            {
-                values.Add(x);
-            }
-        }
-
-        if (negatives.Count > 0)
-        {
-            throw new ArgumentException($"{string.Join(",", negatives)}");
-        }
-
-        return values.Sum();
     }
+
+ 
 }
