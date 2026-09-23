@@ -1,4 +1,4 @@
-import { computed } from '@angular/core';
+import { computed, effect } from '@angular/core';
 import { sanitizeConfig, withStellarDevtools } from '@hypertheory-labs/stellar-ng-devtools';
 import {
   patchState,
