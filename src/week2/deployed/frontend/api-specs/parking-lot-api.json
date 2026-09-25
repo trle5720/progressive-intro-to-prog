@@ -12,9 +12,7 @@
   "paths": {
     "/parking-lot": {
       "post": {
-        "tags": [
-          "Items"
-        ],
+        "tags": ["Items"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -59,9 +57,7 @@
         }
       },
       "get": {
-        "tags": [
-          "Items"
-        ],
+        "tags": ["Items"],
         "responses": {
           "200": {
             "description": "OK",
@@ -97,9 +93,7 @@
     },
     "/parking-lot/{id}": {
       "get": {
-        "tags": [
-          "Items"
-        ],
+        "tags": ["Items"],
         "operationId": "item-added",
         "parameters": [
           {
@@ -156,14 +150,12 @@
         }
       },
       "ParkingLotCreateItem": {
-        "required": [
-          "title"
-        ],
+        "required": ["title"],
         "type": "object",
         "properties": {
           "title": {
             "maxLength": 100,
-            "minLength": 3,
+            "minLength": 5,
             "type": "string"
           },
           "description": {
