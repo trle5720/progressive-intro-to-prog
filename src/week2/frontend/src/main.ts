@@ -6,6 +6,7 @@ import { isDevMode } from '@angular/core';
 // when you start, if you are in "dev mode", start msw, otherwise don't.
 
 async function enableMocking() {
+  return;
   if (isDevMode()) {
     const { worker } = await import('./mocks/browser');
     return await worker.start({ onUnhandledRequest: 'bypass' });

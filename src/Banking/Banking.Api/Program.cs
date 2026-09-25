@@ -11,6 +11,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddScoped<IProvideBonusesForBankAccountDeposits, TimeBasedBonusCalculator>();
 builder.Services.AddScoped<IProvideTheBusinessClock, BusinessClock>();
 builder.Services.AddSingleton(TimeProvider.System);
+builder.Services.AddScoped<BankAccount>();
 var app = builder.Build();
 
 

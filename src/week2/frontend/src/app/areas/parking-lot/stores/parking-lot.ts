@@ -12,6 +12,7 @@ import { withStellarDevtools } from '@hypertheory-labs/stellar-ng-devtools';
 import { httpResource } from '@angular/common/http';
 import { computed } from '@angular/core';
 import { ParkingLotItemCreate } from '../pages/add';
+import { withNoteTracking } from './notes-feature';
 
 type SortableColumns = Pick<ParkingLotItem, 'title' | 'created'>;
 
@@ -23,6 +24,7 @@ type ParkingLotState = {
   direction: SortDirection;
 };
 export const ParkingLotStore = signalStore(
+  withNoteTracking(),
   withStellarDevtools('parking-lot'),
   withProps(() => ({
     itemsResource: httpResource<ParkingLotItem[]>(() => '/api/parking-lot'),
@@ -100,7 +102,7 @@ export const ParkingLotStore = signalStore(
     };
   }),
   withHooks({
-    onInit(store) {
+    onInit() {
       // setInterval(() => {
       //   store.itemsResource.reload();
       // }, 10000)

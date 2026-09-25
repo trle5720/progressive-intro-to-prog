@@ -5,7 +5,7 @@ public class TimeBasedBonusCalculator(IProvideTheBusinessClock clock) : IProvide
     public decimal CalculateBonusFor(decimal currentBalance, TransactionAmount amountToDeposit)
     {
         return clock.IsDuringBusinessHours() && currentBalance >= 5000
-            ? amountToDeposit * 0.10M
+            ? amountToDeposit * 0.12M
             : 0;
     }
 

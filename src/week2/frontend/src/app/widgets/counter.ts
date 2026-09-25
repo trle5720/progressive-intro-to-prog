@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   template: `
     <div>
       <button (click)="decrement()" class="btn btn-warning">-</button>
-      <span>{{ current }}</span>
+      <span data-testid="current">{{ current }}</span>
       <button (click)="increment()" class="btn btn-primary">+</button>
     </div>
   `,

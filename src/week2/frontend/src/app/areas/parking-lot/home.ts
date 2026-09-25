@@ -9,7 +9,7 @@ import { ParkingLotStore } from './stores/parking-lot';
     <div class="flex flex-row gap-4 p-4">
       <a class="btn btn-accent btn-outline" routerLink="list">List</a>
       <a class="btn btn-accent btn-outline" routerLink="add">Add an Item</a>
-      <p>You have {{ countOfItems() }} items in the parking lot!</p>
+      <p>You have {{ countOfItems() }} items in the parking lot, yo!</p>
     </div>
     <router-outlet />
   `,

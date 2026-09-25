@@ -1,8 +1,8 @@
-import { Component, inject, signal } from '@angular/core';
-import { UpIcon } from './up-icon';
-import { DownIcon } from './down-icon';
-import { ParkingLotStore } from '../stores/parking-lot';
 import { TitleCasePipe } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { ParkingLotStore } from '../stores/parking-lot';
+import { DownIcon } from './down-icon';
+import { UpIcon } from './up-icon';
 
 @Component({
   selector: 'app-parking-lot-list-sort',

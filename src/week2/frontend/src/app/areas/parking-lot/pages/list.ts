@@ -1,10 +1,8 @@
 import { DatePipe } from '@angular/common';
-import { httpResource } from '@angular/common/http';
-import { Component, computed, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ParkingLotItem } from '../types';
-import { ListSort } from '../widgets/list-sort';
 import { ParkingLotStore } from '../stores/parking-lot';
+import { ListSort } from '../widgets/list-sort';
 
 @Component({
   selector: 'app-parking-lot-list',
@@ -27,7 +25,7 @@ import { ParkingLotStore } from '../stores/parking-lot';
     } @else {
       <app-parking-lot-list-sort />
 
-      <ul class="p-4 bg-base-200">
+      <ul data-testid="item-list" class="p-4 bg-base-200">
         @for (item of store.sortedList(); track item.id) {
           <li class="collapse collapse-arrow bg-base-100 border border-base-300 mb-4">
             <input type="radio" name="my-accordion-2" checked="checked" />
@@ -43,7 +41,11 @@ import { ParkingLotStore } from '../stores/parking-lot';
                   >{{ item.created | date: 'shortDate' }} at
                   {{ item.created | date: 'shortTime' }}</span
                 >
-                <a class="link flex flex-row gap-2" [routerLink]="['..', 'details', item.id]">
+                <a
+                  [attr.data-testid]="'details-link-' + $index"
+                  class="link flex flex-row gap-2"
+                  [routerLink]="['..', 'details', item.id]"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -62,7 +64,9 @@ import { ParkingLotStore } from '../stores/parking-lot';
             </div>
           </li>
         } @empty {
-          <li class="alert alert-info">Sorry - no items in your parking lot! Add some?</li>
+          <li data-testid="empty-message" class="alert alert-info">
+            Sorry - no items in your parking lot! Add some?
+          </li>
         }
       </ul>
     }
